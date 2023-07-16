@@ -1,61 +1,122 @@
+//import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-void main() => runApp(LEDControlApp());
+void main() {
+  runApp(const LEDControlApp());
+}
 
 class LEDControlApp extends StatelessWidget {
+  const LEDControlApp({super.key});
+
   @override
   Widget build(BuildContext context) {
+    //DatabaseReference ref = FirebaseDatabase.instance.ref("users/123");
+
     return MaterialApp(
-      title: 'LED Control',
+      title: 'Gestion des LED',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LEDControlPage(),
+      home: const HomeScreen(),
+      routes: {
+        '/ajouter_itineraire': (context) => const AjouterItineraireScreen(),
+      },
     );
   }
 }
 
-class LEDControlPage extends StatefulWidget {
-  @override
-  _LEDControlPageState createState() => _LEDControlPageState();
-}
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
-class _LEDControlPageState extends State<LEDControlPage> {
-  bool _isLEDOn = false;
-
-  void _toggleLED() async {
-    const url = 'http://adresse_de_votre_esp8266/on'; // Remplacez par l'URL réelle de votre ESP8266
-    final response = await http.get(url as Uri);
-
-    if (response.statusCode == 200) {
-      setState(() {
-        _isLEDOn = !_isLEDOn;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LED Control'),
+        title: const Text('Gestion des LED'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              _isLEDOn ? 'LED Allumée' : 'LED Éteinte',
-              style: const TextStyle(fontSize: 24),
+          children: [
+            GestureDetector(
+              child: const Text(
+                'Ajouter un itinéraire',
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, '/ajouter_itineraire');
+              },
             ),
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: _toggleLED,
-              child: Text(_isLEDOn ? 'Éteindre' : 'Allumer'),
+            ElevatedButton(
+              child: const Text('M1'),
+              onPressed: () {
+                allumerLED('M1');
+              },
+            ),
+            ElevatedButton(
+              child: const Text('M2'),
+              onPressed: () {
+                allumerLED('M2');
+              },
+            ),
+            ElevatedButton(
+              child: const Text('M3'),
+              onPressed: () {
+                allumerLED('M3');
+              },
+            ),
+            ElevatedButton(
+              child: const Text('M4'),
+              onPressed: () {
+                allumerLED('M4');
+              },
+            ),
+            ElevatedButton(
+              child: const Text('M5'),
+              onPressed: () {
+                allumerLED('M5');
+              },
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              child: const Text('Allumer/Éteindre'),
+              onPressed: () {
+                allumerEteindreLED();
+              },
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void allumerLED(String motif) {
+    // Fonction pour allumer les LED en fonction du motif sélectionné
+    print('Allumer les LED avec le motif $motif');
+  }
+
+  void allumerEteindreLED() {
+    // Fonction pour allumer ou éteindre les LED
+    print('Allumer/éteindre les LED');
+  }
+}
+
+class AjouterItineraireScreen extends StatelessWidget {
+  const AjouterItineraireScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Ajouter un itinerant'),
+      ),
+      body: const Center(
+        child: Text('Écran Ajouter un itinéraire'),
       ),
     );
   }
