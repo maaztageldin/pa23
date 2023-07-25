@@ -56,36 +56,36 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              child: const Text('M1'),
+              child: const Text('French flag'),
               onPressed: () {
                 updateMotifValue('M1');
               },
             ),
             ElevatedButton(
-              child: const Text('M2'),
+              child: const Text('Italian flag'),
               onPressed: () {
                 updateMotifValue('M2');
               },
             ),
             ElevatedButton(
-              child: const Text('M3'),
+              child: const Text('Turn left'),
               onPressed: () {
                 updateMotifValue('M3');
               },
             ),
             ElevatedButton(
-              child: const Text('M4'),
+              child: const Text('Turn right'),
               onPressed: () {
                 updateMotifValue('M4');
               },
             ),
-            ElevatedButton(
+            /*ElevatedButton(
               child: const Text('M5'),
               onPressed: () {
                 updateMotifValue('M5');
               },
-            ),
-            const SizedBox(height: 20),
+            ),*/
+            /*const SizedBox(height: 20),
                   ElevatedButton(
                     child: const Text('Allumer'),
                     onPressed: () {
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                     onPressed: () {
                       allumerEteindreLED('OFF');
                     },
-                  ),
+                  ),*/
 
 
           ],
